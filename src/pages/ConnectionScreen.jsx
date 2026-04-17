@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import axios from 'axios';
+import api from '../api/config';
 import { Database, Link2, CheckCircle, AlertCircle } from 'lucide-react';
 
 const ConnectionScreen = ({ onConnect }) => {
@@ -11,7 +11,7 @@ const ConnectionScreen = ({ onConnect }) => {
     setLoading(true);
     setError(null);
     try {
-      const res = await axios.get(`http://localhost:5001/api/connection?erpType=${erpType}`);
+      const res = await api.get(`/api/connection?erpType=${erpType}`);
       if (res.data.status === 'Connected') {
         onConnect(erpType);
       }
