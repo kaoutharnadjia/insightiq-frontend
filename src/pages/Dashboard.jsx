@@ -15,18 +15,18 @@ const Dashboard = ({ erpType }) => {
     <Layout erpType={erpType} title="InsightIQ Hub">
       <div className="space-y-12">
         {/* Welcome Section */}
-        <div className="bg-gradient-to-r from-indigo-600 to-purple-600 rounded-[2.5rem] p-12 text-white relative overflow-hidden">
+        <div className="bg-gradient-to-r from-burgundy to-deep-wine rounded-[2.5rem] p-12 text-pearl relative overflow-hidden glow-burgundy">
            <div className="relative z-10">
               <div className="flex items-center space-x-3 mb-4">
-                 <Star className="text-amber-300 fill-amber-300" size={24} />
+                 <Star className="text-antique-gold fill-antique-gold" size={24} />
                  <span className="font-black uppercase tracking-widest text-xs opacity-80">AI Readiness: 98%</span>
               </div>
-              <h2 className="text-5xl font-black mb-4 leading-tight">Your Business Intelligence,<br />Decoded in Real-Time.</h2>
-              <p className="text-indigo-100 font-medium text-lg max-w-xl opacity-90">
+              <h2 className="text-5xl font-black mb-4 leading-tight text-glow-pearl">Your Business Intelligence,<br />Decoded in Real-Time.</h2>
+              <p className="text-pearl/80 font-medium text-lg max-w-xl">
                  Explore specialized insights optimized for your {erpType} environment. Choose a module below to deep dive.
               </p>
            </div>
-           <div className="absolute top-0 right-0 w-1/3 h-full bg-white/10 -skew-x-12 translate-x-1/2"></div>
+           <div className="absolute top-0 right-0 w-1/3 h-full bg-white/5 -skew-x-12 translate-x-1/2"></div>
         </div>
 
         {/* Navigation Grid */}
@@ -35,7 +35,7 @@ const Dashboard = ({ erpType }) => {
               title="Sales & Revenue" 
               desc="Full financial transparency with predicted revenue growth." 
               icon={<DollarSign size={32} />} 
-              color="emerald"
+              color="crimson"
               onClick={() => navigate('/revenue')}
               stat={`$${data.kpis.totalSales.toLocaleString()}`}
            />
@@ -43,7 +43,7 @@ const Dashboard = ({ erpType }) => {
               title="Inventory Health" 
               desc="Smart stock management with preemptive reorder logic." 
               icon={<Package size={32} />} 
-              color="blue"
+              color="burgundy"
               onClick={() => navigate('/inventory')}
               stat={`$${data.kpis.inventoryValue.toLocaleString()}`}
            />
@@ -51,31 +51,31 @@ const Dashboard = ({ erpType }) => {
               title="Customer Success" 
               desc="Experience analytics and support resolution bottlenecks." 
               icon={<MessageSquare size={32} />} 
-              color="amber"
+              color="antique-gold"
               onClick={() => navigate('/support')}
               stat={`${data.kpis.resolutionRate}% Rate`}
            />
         </div>
 
         {/* Quick Summary Row */}
-        <div className="bg-[#1E293B] border border-white/5 rounded-3xl p-10 flex flex-col md:flex-row justify-between items-center gap-8">
+        <div className="bg-crimson-night border border-dark-rose rounded-3xl p-10 flex flex-col md:flex-row justify-between items-center gap-8 glow-burgundy">
            <div className="flex items-center space-x-6">
-              <div className="p-5 bg-indigo-500/10 rounded-3xl text-indigo-400">
+              <div className="p-5 bg-burgundy/10 rounded-3xl text-crimson glow-crimson">
                  <TrendingUp size={40} />
               </div>
               <div>
-                 <p className="text-white font-bold text-2xl">Overall System Pulse</p>
-                 <p className="text-gray-400 font-medium">All ERP-Connectors are operating at peak efficiency.</p>
+                 <p className="text-pearl font-bold text-2xl">Overall System Pulse</p>
+                 <p className="text-dusty-rose font-medium">All ERP-Connectors are operating at peak efficiency.</p>
               </div>
            </div>
            <div className="flex gap-12">
               <div className="text-center">
-                 <p className="text-gray-500 text-[10px] font-black uppercase tracking-[0.2em] mb-1">Active Insights</p>
-                 <p className="text-3xl font-black text-white">{data.insights.length}</p>
+                 <p className="text-dusty-rose text-[10px] font-black uppercase tracking-[0.2em] mb-1">Active Insights</p>
+                 <p className="text-3xl font-black text-pearl text-glow-pearl">{data.insights.length}</p>
               </div>
               <div className="text-center">
-                 <p className="text-gray-500 text-[10px] font-black uppercase tracking-[0.2em] mb-1">Sync Latency</p>
-                 <p className="text-3xl font-black text-white">4ms</p>
+                 <p className="text-dusty-rose text-[10px] font-black uppercase tracking-[0.2em] mb-1">Sync Latency</p>
+                 <p className="text-3xl font-black text-pearl text-glow-pearl">4ms</p>
               </div>
            </div>
         </div>
@@ -87,22 +87,22 @@ const Dashboard = ({ erpType }) => {
 const NavCard = ({ title, desc, icon, color, onClick, stat }) => (
   <button 
     onClick={onClick}
-    className="bg-[#1E293B] p-10 rounded-[2.5rem] border border-white/5 text-left transition-all hover:scale-[1.02] hover:border-indigo-500/30 group relative overflow-hidden"
+    className="bg-crimson-night p-10 rounded-[2.5rem] border border-dark-rose text-left transition-all hover:scale-[1.02] hover:border-burgundy/50 group relative overflow-hidden glow-burgundy hover:glow-crimson"
   >
-    <div className={`absolute top-0 right-0 w-40 h-40 bg-${color}-500/5 blur-3xl -mr-20 -mt-20 group-hover:bg-indigo-500/10 transition-all`}></div>
-    <div className={`w-20 h-20 bg-${color}-500/10 rounded-3xl flex items-center justify-center text-${color}-400 mb-8 mb-8 group-hover:scale-110 transition-transform`}>
+    <div className={`absolute top-0 right-0 w-40 h-40 bg-${color}/5 blur-3xl -mr-20 -mt-20 group-hover:bg-crimson/10 transition-all`}></div>
+    <div className={`w-20 h-20 bg-${color === 'antique-gold' ? 'antique-gold' : color}/10 rounded-3xl flex items-center justify-center text-${color === 'antique-gold' ? 'antique-gold' : color} mb-8 group-hover:scale-110 transition-transform`}>
       {icon}
     </div>
-    <h3 className="text-2xl font-black text-white mb-3 flex items-center justify-between">
+    <h3 className="text-2xl font-black text-pearl mb-3 flex items-center justify-between">
       <span>{title}</span>
-      <ChevronRight className="opacity-0 group-hover:opacity-100 group-hover:translate-x-2 transition-all text-indigo-400" />
+      <ChevronRight className="opacity-0 group-hover:opacity-100 group-hover:translate-x-2 transition-all text-crimson" />
     </h3>
-    <p className="text-gray-400 font-medium mb-8 leading-relaxed">
+    <p className="text-dusty-rose font-medium mb-8 leading-relaxed">
       {desc}
     </p>
-    <div className="pt-8 border-t border-white/5 flex flex-col">
-       <span className="text-[10px] font-black text-gray-500 uppercase tracking-widest mb-1">Live Metric</span>
-       <span className="text-2xl font-black text-white">{stat}</span>
+    <div className="flex items-center justify-between pt-6 border-t border-dark-rose">
+      <span className="text-xs font-black uppercase tracking-widest text-dusty-rose/50">KPI Overview</span>
+      <span className={`text-xl font-black text-${color === 'antique-gold' ? 'antique-gold' : color}`}>{stat}</span>
     </div>
   </button>
 );

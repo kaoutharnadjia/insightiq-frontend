@@ -23,19 +23,19 @@ const ConnectionScreen = ({ onConnect }) => {
   };
 
   return (
-    <div className="min-h-screen bg-[#0F172A] flex items-center justify-center p-6 font-sans">
-      <div className="max-w-md w-full bg-[#1E293B] rounded-3xl p-10 shadow-2xl border border-white/5">
+    <div className="min-h-screen bg-abyss flex items-center justify-center p-6 font-sans">
+      <div className="max-w-md w-full bg-crimson-night rounded-3xl p-10 shadow-2xl border border-dark-rose glow-burgundy">
         <div className="flex flex-col items-center mb-10">
-          <div className="bg-indigo-500/10 p-4 rounded-2xl mb-6">
-            <Database className="text-indigo-400 w-12 h-12" />
+          <div className="bg-burgundy/10 p-4 rounded-2xl mb-6 glow-crimson">
+            <Database className="text-crimson w-12 h-12" />
           </div>
-          <h1 className="text-3xl font-bold text-white mb-2">InsightIQ</h1>
-          <p className="text-gray-400 text-center">Connect your AI agent to an ERP system to start generating predictions.</p>
+          <h1 className="text-3xl font-bold text-pearl mb-2 text-glow-pearl">InsightIQ</h1>
+          <p className="text-dusty-rose text-center">Connect your AI agent to an ERP system to start generating predictions.</p>
         </div>
 
         <div className="space-y-6">
           <div>
-            <label className="text-xs font-bold text-gray-500 uppercase tracking-widest mb-3 block">Select ERP System</label>
+            <label className="text-xs font-bold text-dusty-rose/60 uppercase tracking-widest mb-3 block">Select ERP System</label>
             <div className="grid grid-cols-1 gap-4">
               {[
                 { id: 'odoo', label: 'Odoo', logo: '/odoo-logo.png' },
@@ -47,8 +47,8 @@ const ConnectionScreen = ({ onConnect }) => {
                   onClick={() => setErpType(erp.id)}
                   className={`flex items-center space-x-4 p-4 rounded-2xl border-2 transition-all font-bold ${
                     erpType === erp.id 
-                      ? 'border-indigo-500 bg-indigo-500/10 text-indigo-400' 
-                      : 'border-white/5 bg-white/5 text-gray-400 hover:bg-white/10'
+                      ? 'border-crimson bg-burgundy/20 text-crimson glow-crimson' 
+                      : 'border-dark-rose bg-abyss text-dusty-rose hover:bg-dark-rose/20'
                   }`}
                 >
                   <div className="w-12 h-12 bg-white rounded-lg p-2 flex items-center justify-center overflow-hidden shrink-0">
@@ -61,7 +61,7 @@ const ConnectionScreen = ({ onConnect }) => {
           </div>
 
           {error && (
-            <div className="bg-red-500/10 border border-red-500/20 text-red-400 p-4 rounded-xl flex items-center space-x-3">
+            <div className="bg-crimson/10 border border-crimson/20 text-crimson p-4 rounded-xl flex items-center space-x-3 glow-crimson">
               <AlertCircle size={20} />
               <span className="text-sm font-medium">{error}</span>
             </div>
@@ -70,10 +70,10 @@ const ConnectionScreen = ({ onConnect }) => {
           <button
             onClick={handleConnect}
             disabled={loading}
-            className="w-full bg-indigo-600 hover:bg-indigo-700 disabled:opacity-50 text-white font-bold py-4 rounded-2xl transition-all shadow-lg shadow-indigo-600/20 flex items-center justify-center space-x-3 group"
+            className="w-full bg-crimson hover:bg-burgundy disabled:opacity-50 text-pearl font-bold py-4 rounded-2xl transition-all shadow-lg glow-crimson flex items-center justify-center space-x-3 group"
           >
             {loading ? (
-              <span className="animate-spin rounded-full h-5 w-5 border-b-2 border-white"></span>
+              <span className="animate-spin rounded-full h-5 w-5 border-b-2 border-pearl"></span>
             ) : (
               <>
                 <Link2 className="group-hover:rotate-45 transition-transform" />

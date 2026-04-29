@@ -19,8 +19,8 @@ const InventoryPage = ({ erpType }) => {
     datasets: [{
       label: 'Stock Levels',
       data: [65, 45, 80, 25, 55],
-      backgroundColor: 'rgba(59, 130, 246, 0.2)',
-      borderColor: '#3b82f6',
+      backgroundColor: 'rgba(139, 26, 46, 0.2)', // burgundy
+      borderColor: '#8B1A2E',
       borderWidth: 2,
       borderRadius: 8,
     }]
@@ -30,22 +30,22 @@ const InventoryPage = ({ erpType }) => {
     <Layout erpType={erpType} title="Inventory Management">
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
         <div className="lg:col-span-2 space-y-8">
-          <div className="bg-[#1E293B] p-10 rounded-[2.5rem] border border-white/5 relative overflow-hidden group">
-            <div className="absolute top-0 right-0 w-64 h-64 bg-blue-500/5 blur-3xl -mr-32 -mt-32"></div>
+          <div className="bg-crimson-night p-10 rounded-[2.5rem] border border-dark-rose relative overflow-hidden group glow-burgundy">
+            <div className="absolute top-0 right-0 w-64 h-64 bg-burgundy/5 blur-3xl -mr-32 -mt-32"></div>
             <div className="flex justify-between items-start">
               <div>
-                <p className="text-gray-500 text-xs font-black uppercase tracking-widest mb-2">Inventory Assets Value</p>
-                <h2 className="text-6xl font-black text-white">${data.kpis.inventoryValue.toLocaleString()}</h2>
+                <p className="text-dusty-rose text-xs font-black uppercase tracking-widest mb-2">Inventory Assets Value</p>
+                <h2 className="text-6xl font-black text-pearl text-glow-pearl">${data.kpis.inventoryValue.toLocaleString()}</h2>
               </div>
-              <div className="p-4 bg-blue-500/10 rounded-2xl text-blue-400">
+              <div className="p-4 bg-burgundy/10 rounded-2xl text-crimson glow-crimson">
                 <Package size={32} />
               </div>
             </div>
           </div>
 
-          <div className="bg-[#1E293B] p-8 rounded-[2.5rem] border border-white/5">
-             <h3 className="text-xl font-bold text-white mb-6 flex items-center space-x-3">
-               <BarChart3 className="text-blue-400" />
+          <div className="bg-crimson-night p-8 rounded-[2.5rem] border border-dark-rose glow-burgundy">
+             <h3 className="text-xl font-bold text-pearl mb-6 flex items-center space-x-3">
+               <BarChart3 className="text-crimson" />
                <span>Stock Category Distribution</span>
              </h3>
              <div className="h-64">
@@ -54,25 +54,25 @@ const InventoryPage = ({ erpType }) => {
           </div>
 
           <div className="space-y-6">
-            <h3 className="text-xl font-bold text-white flex items-center space-x-3">
-              <AlertTriangle className="text-amber-400" />
+            <h3 className="text-xl font-bold text-pearl flex items-center space-x-3">
+              <AlertTriangle className="text-antique-gold" />
               <span>Critical Overlays</span>
             </h3>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                {inventoryInsights.map((insight, idx) => (
-                 <div key={idx} className={`p-6 rounded-3xl border bg-white/5 border-white/10 hover:bg-white/10 transition-all ${insight.severity === 'high' ? 'border-red-500/30 shadow-[0_0_15px_rgba(239,68,68,0.05)]' : ''}`}>
+                 <div key={idx} className={`p-6 rounded-3xl border bg-crimson-night border-dark-rose hover:bg-dark-rose/30 transition-all glow-burgundy ${insight.severity === 'high' ? 'border-crimson/50 glow-crimson' : ''}`}>
                     <div className="flex justify-between items-start mb-4">
                       <div>
-                        <h4 className="text-white font-bold">{insight.product}</h4>
-                        <p className="text-indigo-400/60 text-xs mt-1">{insight.prediction}</p>
+                        <h4 className="text-pearl font-bold">{insight.product}</h4>
+                        <p className="text-dusty-rose text-xs mt-1">{insight.prediction}</p>
                       </div>
-                      <span className={`text-[10px] font-black uppercase px-2 py-1 rounded-md ${insight.severity === 'high' ? 'bg-red-500/20 text-red-400' : 'bg-white/10 text-gray-400'}`}>
+                      <span className={`text-[10px] font-black uppercase px-2 py-1 rounded-md ${insight.severity === 'high' ? 'bg-crimson/20 text-crimson' : 'bg-burgundy/20 text-dusty-rose'}`}>
                         {insight.severity}
                       </span>
                     </div>
-                    <div className="flex items-center space-x-2 text-white text-[11px] font-bold bg-white/5 px-4 py-2 rounded-xl border border-white/5 w-fit">
+                    <div className="flex items-center space-x-2 text-pearl text-[11px] font-bold bg-abyss/50 px-4 py-2 rounded-xl border border-dark-rose w-fit">
                         <span>{insight.recommendation}</span>
-                        <ArrowRight size={12} className="text-indigo-400" />
+                        <ArrowRight size={12} className="text-crimson" />
                     </div>
                  </div>
                ))}
@@ -81,20 +81,20 @@ const InventoryPage = ({ erpType }) => {
         </div>
 
         <div className="space-y-8">
-           <div className="bg-[#1E293B] p-8 rounded-[2.5rem] border border-white/5 space-y-8">
-              <h3 className="text-white font-bold flex items-center space-x-2">
-                 <CheckCircle2 size={18} className="text-emerald-400" />
+           <div className="bg-crimson-night p-8 rounded-[2.5rem] border border-dark-rose space-y-8 glow-burgundy">
+              <h3 className="text-pearl font-bold flex items-center space-x-2">
+                 <CheckCircle2 size={18} className="text-crimson" />
                  <span>Logistics Compliance</span>
               </h3>
-              <RiskItem label="Stockout Probability" percentage={75} color="bg-red-500" />
-              <RiskItem label="Warehouse Capacity" percentage={88} color="bg-blue-500" />
-              <RiskItem label="Supplier Delay" percentage={12} color="bg-emerald-500" />
+              <RiskItem label="Stockout Probability" percentage={75} color="bg-crimson" />
+              <RiskItem label="Warehouse Capacity" percentage={88} color="bg-burgundy" />
+              <RiskItem label="Supplier Delay" percentage={12} color="bg-antique-gold" />
            </div>
 
-           <div className="p-8 bg-indigo-600 rounded-[2.5rem] text-white">
+           <div className="p-8 bg-gradient-to-br from-burgundy to-deep-wine rounded-[2.5rem] text-pearl glow-burgundy">
               <p className="font-black uppercase tracking-widest text-[10px] mb-2 opacity-80">Supply Chain Tip</p>
-              <h4 className="font-bold text-lg mb-2">Enable Auto-Replenish</h4>
-              <p className="text-sm text-indigo-100 opacity-90">Integrating your supplier portal with InsightIQ can reduce stockout risk by 45%.</p>
+              <h4 className="font-bold text-lg mb-2 text-glow-pearl">Enable Auto-Replenish</h4>
+              <p className="text-sm text-pearl/80">Integrating your supplier portal with InsightIQ can reduce stockout risk by 45%.</p>
            </div>
         </div>
       </div>
@@ -105,11 +105,11 @@ const InventoryPage = ({ erpType }) => {
 const RiskItem = ({ label, percentage, color }) => (
   <div className="space-y-3">
     <div className="flex justify-between text-sm font-bold">
-      <span className="text-gray-400">{label}</span>
-      <span className="text-white">{percentage}%</span>
+      <span className="text-dusty-rose">{label}</span>
+      <span className="text-pearl">{percentage}%</span>
     </div>
-    <div className="h-2 bg-white/5 rounded-full overflow-hidden">
-      <div className={`h-full ${color}`} style={{ width: `${percentage}%` }}></div>
+    <div className="h-2 bg-abyss rounded-full overflow-hidden border border-dark-rose">
+      <div className={`h-full ${color} glow-crimson`} style={{ width: `${percentage}%` }}></div>
     </div>
   </div>
 );

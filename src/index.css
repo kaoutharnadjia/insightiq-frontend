@@ -1,1 +1,39 @@
 @import "tailwindcss";
+
+@theme {
+  --color-abyss: #0D0608;
+  --color-crimson-night: #1A0509;
+  --color-dark-rose: #2A0D12;
+  --color-burgundy: #8B1A2E;
+  --color-crimson: #C0364E;
+  --color-deep-wine: #6B1020;
+  --color-pearl: #F5D0C0;
+  --color-dusty-rose: #C0909A;
+  --color-antique-gold: #C9A84C;
+
+  --shadow-glow-burgundy: 0 0 15px rgba(139, 26, 46, 0.4);
+  --shadow-glow-crimson: 0 0 20px rgba(192, 54, 78, 0.5);
+  --shadow-glow-gold: 0 0 15px rgba(201, 168, 76, 0.3);
+}
+
+@layer base {
+  body {
+    @apply bg-abyss text-pearl;
+  }
+}
+
+.glow-burgundy {
+  box-shadow: var(--shadow-glow-burgundy);
+}
+
+.glow-crimson {
+  box-shadow: var(--shadow-glow-crimson);
+}
+
+.glow-gold {
+  box-shadow: var(--shadow-glow-gold);
+}
+
+.text-glow-pearl {
+  text-shadow: 0 0 10px rgba(245, 208, 192, 0.3);
+}
