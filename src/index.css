@@ -1,39 +1,42 @@
 @import "tailwindcss";
 
 @theme {
-  --color-abyss: #0D0608;
-  --color-crimson-night: #1A0509;
-  --color-dark-rose: #2A0D12;
-  --color-burgundy: #8B1A2E;
-  --color-crimson: #C0364E;
-  --color-deep-wine: #6B1020;
-  --color-pearl: #F5D0C0;
-  --color-dusty-rose: #C0909A;
-  --color-antique-gold: #C9A84C;
+  --color-bg-main: #0b0204;
+  --color-bg-secondary: #140507;
+  --color-bg-card: #1c080c;
+  
+  --color-burgundy-dark: #3b0a12;
+  --color-burgundy: #5a0f1c;
+  --color-wine-red: #7a1626;
+  --color-deep-red: #a11d2f;
+  
+  --color-accent-red: #d6334a;
+  --color-accent-soft: #ff4d6d;
+  
+  --color-text-primary: #f5dcdc;
+  --color-text-secondary: #c9a3a3;
+  --color-text-muted: #8a6a6a;
+  
+  --color-border-dark: #2a0a0f;
 
-  --shadow-glow-burgundy: 0 0 15px rgba(139, 26, 46, 0.4);
-  --shadow-glow-crimson: 0 0 20px rgba(192, 54, 78, 0.5);
-  --shadow-glow-gold: 0 0 15px rgba(201, 168, 76, 0.3);
+  --shadow-glow-red: 0 0 20px rgba(214, 51, 74, 0.35);
+  --shadow-glow-soft: 0 0 25px rgba(255, 77, 109, 0.4);
 }
 
 @layer base {
   body {
-    @apply bg-abyss text-pearl;
+    @apply bg-bg-main text-text-primary;
   }
 }
 
-.glow-burgundy {
-  box-shadow: var(--shadow-glow-burgundy);
+.glow-red {
+  box-shadow: var(--shadow-glow-red);
 }
 
-.glow-crimson {
-  box-shadow: var(--shadow-glow-crimson);
+.glow-soft {
+  box-shadow: var(--shadow-glow-soft);
 }
 
-.glow-gold {
-  box-shadow: var(--shadow-glow-gold);
-}
-
-.text-glow-pearl {
-  text-shadow: 0 0 10px rgba(245, 208, 192, 0.3);
+.text-glow-primary {
+  text-shadow: 0 0 10px rgba(245, 220, 220, 0.3);
 }

@@ -35,10 +35,10 @@ export const commonOptions = {
       display: false,
     },
     tooltip: {
-      backgroundColor: '#1A0509', // crimson-night
-      titleColor: '#C0909A', // dusty-rose
-      bodyColor: '#F5D0C0', // pearl
-      borderColor: 'rgba(42, 13, 18, 0.5)', // dark-rose
+      backgroundColor: '#140507', // bg-secondary
+      titleColor: '#c9a3a3', // text-secondary
+      bodyColor: '#f5dcdc', // text-primary
+      borderColor: 'rgba(42, 10, 15, 0.5)', // border-dark
       borderWidth: 1,
       padding: 12,
       displayColors: false,
@@ -47,11 +47,11 @@ export const commonOptions = {
   scales: {
     x: {
       grid: { display: false, drawBorder: false },
-      ticks: { color: '#C0909A', font: { weight: 'bold', size: 10 } }
+      ticks: { color: '#8a6a6a', font: { weight: 'bold', size: 10 } } // text-muted
     },
     y: {
-      grid: { color: 'rgba(42, 13, 18, 0.2)', drawBorder: false },
-      ticks: { color: '#C0909A', font: { weight: 'bold', size: 10 } }
+      grid: { color: 'rgba(42, 10, 15, 0.2)', drawBorder: false },
+      ticks: { color: '#8a6a6a', font: { weight: 'bold', size: 10 } } // text-muted
     }
   }
 };
