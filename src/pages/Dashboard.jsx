@@ -2,7 +2,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAnalytics } from '../hooks/useAnalytics';
 import Layout from '../components/Layout';
-import { DollarSign, Package, MessageSquare, TrendingUp, ChevronRight, Star } from 'lucide-react';
+import { DollarSign, Package, CreditCard, Cog, ArrowRight, Star, TrendingUp } from 'lucide-react';
 import ProcessingScreen from '../components/ProcessingScreen';
 
 const Dashboard = ({ erpType }) => {
@@ -11,98 +11,122 @@ const Dashboard = ({ erpType }) => {
 
   if (loading) return <ProcessingScreen message="Synchronizing InsightIQ Hub" />;
 
+  const systemInsight = data.insights.find(i => i.type === 'system') || { readiness: '98' };
+
   return (
-    <Layout erpType={erpType} title="InsightIQ Hub">
-      <div className="space-y-12">
-        {/* Welcome Section */}
-        <div className="bg-gradient-to-r from-burgundy-dark to-wine-red rounded-[2.5rem] p-12 text-text-primary relative overflow-hidden glow-red">
-           <div className="relative z-10">
-              <div className="flex items-center space-x-3 mb-4">
-                 <Star className="text-accent-soft fill-accent-soft" size={24} />
-                 <span className="font-black uppercase tracking-widest text-xs opacity-80">AI Readiness: 98%</span>
-              </div>
-              <h2 className="text-5xl font-black mb-4 leading-tight text-glow-primary">Your Business Intelligence,<br />Decoded in Real-Time.</h2>
-              <p className="text-text-primary/80 font-medium text-lg max-w-xl">
-                 Explore specialized insights optimized for your {erpType} environment. Choose a module below to deep dive.
-              </p>
-           </div>
-           <div className="absolute top-0 right-0 w-1/3 h-full bg-white/5 -skew-x-12 translate-x-1/2"></div>
+    <Layout erpType={erpType} title="Dashboard">
+      <div className="space-y-10 pb-10">
+        {/* Hero Section */}
+        <div className="relative glass-morphism-red rounded-[3rem] p-10 overflow-hidden group">
+          {/* Graph Background Simulation */}
+          <div className="absolute inset-0 opacity-20 pointer-events-none">
+            <svg viewBox="0 0 400 200" className="w-full h-full">
+              <path 
+                d="M0 150 Q 100 130, 150 100 T 300 50 T 400 20" 
+                fill="none" 
+                stroke="#e61e3c" 
+                strokeWidth="4"
+                className="drop-shadow-[0_0_10px_rgba(230,30,60,0.8)]"
+              />
+              <circle cx="150" cy="100" r="4" fill="#e61e3c" className="animate-pulse" />
+              <circle cx="300" cy="50" r="4" fill="#e61e3c" className="animate-pulse" />
+              <rect x="50" y="140" width="20" height="60" fill="#e61e3c" opacity="0.3" />
+              <rect x="100" y="120" width="20" height="80" fill="#e61e3c" opacity="0.3" />
+              <rect x="200" y="80" width="20" height="120" fill="#e61e3c" opacity="0.3" />
+              <rect x="250" y="60" width="20" height="140" fill="#e61e3c" opacity="0.3" />
+              <rect x="350" y="30" width="20" height="170" fill="#e61e3c" opacity="0.3" />
+            </svg>
+          </div>
+
+          <div className="relative z-10">
+            <div className="flex items-center space-x-2 mb-8">
+              <Star className="text-accent-red fill-accent-red" size={16} />
+              <span className="text-[10px] font-black uppercase tracking-[0.2em] text-white/60">
+                AI Readiness: <span className="text-white">{systemInsight.readiness}%</span>
+              </span>
+            </div>
+            
+            <h2 className="text-5xl font-black mb-8 leading-[1.1] tracking-tight text-white">
+              Your Business<br />
+              Intelligence,<br />
+              Decoded<br />
+              in Real-Time.
+            </h2>
+            
+            <div className="w-12 h-1 bg-accent-red mb-8"></div>
+            
+            <p className="text-text-secondary font-medium text-sm leading-relaxed max-w-[280px]">
+              Explore specialized insights optimized for your {erpType} environment. Choose a module below to deep dive.
+            </p>
+          </div>
+
+          {/* Glossy Overlay */}
+          <div className="absolute top-0 right-0 w-full h-full bg-gradient-to-br from-white/10 to-transparent pointer-events-none -skew-x-12 translate-x-1/2"></div>
         </div>
 
-        {/* Navigation Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-           <NavCard 
-              title="Sales & Revenue" 
-              desc="Full financial transparency with predicted revenue growth." 
-              icon={<DollarSign size={32} />} 
-              color="accent-red"
+        {/* Explore Modules Section */}
+        <div className="space-y-6">
+          <div className="flex justify-between items-center px-2">
+            <h3 className="text-xl font-black text-white">Explore Modules</h3>
+            <button className="text-text-muted text-sm font-bold flex items-center space-x-2 hover:text-accent-red transition-colors">
+              <span>View all</span>
+              <ArrowRight size={16} />
+            </button>
+          </div>
+
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+            <ModuleCard 
+              title="Sales"
+              subtitle="Intelligence"
+              desc="Track performance & revenue insights"
+              icon={<TrendingUp size={24} />}
               onClick={() => navigate('/revenue')}
-              stat={`$${data.kpis.totalSales.toLocaleString()}`}
-           />
-           <NavCard 
-              title="Inventory Health" 
-              desc="Smart stock management with preemptive reorder logic." 
-              icon={<Package size={32} />} 
-              color="deep-red"
+            />
+            <ModuleCard 
+              title="Inventory"
+              subtitle="Intelligence"
+              desc="Optimize stock & reduce shortages"
+              icon={<Package size={24} />}
               onClick={() => navigate('/inventory')}
-              stat={`$${data.kpis.inventoryValue.toLocaleString()}`}
-           />
-           <NavCard 
-              title="Customer Success" 
-              desc="Experience analytics and support resolution bottlenecks." 
-              icon={<MessageSquare size={32} />} 
-              color="burgundy"
+            />
+            <ModuleCard 
+              title="Financial"
+              subtitle="Intelligence"
+              desc="Monitor cash flow & profitability"
+              icon={<CreditCard size={24} />}
+              onClick={() => navigate('/revenue')}
+            />
+            <ModuleCard 
+              title="Operations"
+              subtitle="Intelligence"
+              desc="Improve efficiency & productivity"
+              icon={<Cog size={24} />}
               onClick={() => navigate('/support')}
-              stat={`${data.kpis.resolutionRate}% Rate`}
-           />
-        </div>
-
-        {/* Quick Summary Row */}
-        <div className="bg-bg-secondary border border-border-dark rounded-3xl p-10 flex flex-col md:flex-row justify-between items-center gap-8 glow-red">
-           <div className="flex items-center space-x-6">
-              <div className="p-5 bg-burgundy/10 rounded-3xl text-accent-red glow-soft">
-                 <TrendingUp size={40} />
-              </div>
-              <div>
-                 <p className="text-text-primary font-bold text-2xl">Overall System Pulse</p>
-                 <p className="text-text-secondary font-medium">All ERP-Connectors are operating at peak efficiency.</p>
-              </div>
-           </div>
-           <div className="flex gap-12">
-              <div className="text-center">
-                 <p className="text-text-muted text-[10px] font-black uppercase tracking-[0.2em] mb-1">Active Insights</p>
-                 <p className="text-3xl font-black text-text-primary text-glow-primary">{data.insights.length}</p>
-              </div>
-              <div className="text-center">
-                 <p className="text-text-muted text-[10px] font-black uppercase tracking-[0.2em] mb-1">Sync Latency</p>
-                 <p className="text-3xl font-black text-text-primary text-glow-primary">4ms</p>
-              </div>
-           </div>
+            />
+          </div>
         </div>
       </div>
     </Layout>
   );
 };
 
-const NavCard = ({ title, desc, icon, color, onClick, stat }) => (
+const ModuleCard = ({ title, subtitle, desc, icon, onClick }) => (
   <button 
     onClick={onClick}
-    className="bg-bg-secondary p-10 rounded-[2.5rem] border border-border-dark text-left transition-all hover:scale-[1.02] hover:border-accent-red/50 group relative overflow-hidden glow-red hover:glow-soft"
+    className="bg-bg-secondary border border-white/5 p-6 rounded-[2rem] text-left transition-all hover:border-accent-red/30 hover:glow-red group"
   >
-    <div className={`absolute top-0 right-0 w-40 h-40 bg-${color}/5 blur-3xl -mr-20 -mt-20 group-hover:bg-accent-red/10 transition-all`}></div>
-    <div className={`w-20 h-20 bg-${color}/10 rounded-3xl flex items-center justify-center text-${color} mb-8 group-hover:scale-110 transition-transform`}>
+    <div className="bg-accent-red/10 w-12 h-12 rounded-2xl flex items-center justify-center text-accent-red mb-6 group-hover:scale-110 transition-transform">
       {icon}
     </div>
-    <h3 className="text-2xl font-black text-text-primary mb-3 flex items-center justify-between">
-      <span>{title}</span>
-      <ChevronRight className="opacity-0 group-hover:opacity-100 group-hover:translate-x-2 transition-all text-accent-red" />
-    </h3>
-    <p className="text-text-secondary font-medium mb-8 leading-relaxed">
+    <div className="mb-4">
+      <h4 className="text-lg font-black text-white leading-tight">{title}</h4>
+      <p className="text-xs font-bold text-white/40">{subtitle}</p>
+    </div>
+    <p className="text-[10px] text-text-muted font-medium mb-6 leading-snug">
       {desc}
     </p>
-    <div className="flex items-center justify-between pt-6 border-t border-border-dark">
-      <span className="text-xs font-black uppercase tracking-widest text-text-muted">KPI Overview</span>
-      <span className={`text-xl font-black text-${color}`}>{stat}</span>
+    <div className="w-8 h-8 bg-white/5 rounded-full flex items-center justify-center text-text-muted group-hover:bg-accent-red group-hover:text-white transition-all">
+      <ArrowRight size={14} />
     </div>
   </button>
 );
