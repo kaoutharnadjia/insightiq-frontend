@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { MessageSquare, Send, X, Bot, Loader2, Database, Sparkles } from 'lucide-react';
 import axios from 'axios';
+import api from '../api/config';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 
@@ -35,7 +36,7 @@ const ChatWidget = ({ erpType }) => {
     setIsLoading(true);
 
     try {
-      const response = await axios.post('http://localhost:5001/api/chat/message', {
+      const response = await api.post('/api/chat/message', {
         message: userMessage,
         erpType: erpType
       });
@@ -54,7 +55,7 @@ const ChatWidget = ({ erpType }) => {
     setIsIndexing(true);
     try {
       setChatHistory(prev => [...prev, { role: 'assistant', content: '### 🔄 جاري التحديث\nجاري الاتصال بالمحرك الذكي وتحديث البيانات... يرجى الانتظار.' }]);
-      const response = await axios.post('http://localhost:5001/api/chat/index', { erpType });
+      const response = await api.post('/api/chat/index', { erpType });
       setChatHistory(prev => [...prev, { role: 'assistant', content: `### ✅ تم بنجاح\nتمت معالجة **${response.data.count}** سجل بيانات وتغذية الشاتبوت بها بنجاح.` }]);
     } catch (error) {
       console.error('Indexing error:', error);
