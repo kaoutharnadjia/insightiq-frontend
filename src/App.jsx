@@ -7,6 +7,7 @@ import InventoryPage from './pages/InventoryPage';
 import SupportPage from './pages/SupportPage';
 import AlertsPage from './pages/AlertsPage';
 import InsightsPage from './pages/InsightsPage';
+import FinancePage from './pages/FinancePage';
 
 function App() {
   const [erpType, setErpType] = useState(null);
@@ -19,7 +20,9 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Dashboard erpType={erpType} />} />
-        <Route path="/revenue" element={<RevenuePage erpType={erpType} />} />
+        <Route path="/sales" element={<RevenuePage erpType={erpType} />} />
+        <Route path="/revenue" element={<Navigate to="/sales" />} /> {/* Legacy route */}
+        <Route path="/finance" element={<FinancePage erpType={erpType} />} />
         <Route path="/inventory" element={<InventoryPage erpType={erpType} />} />
         <Route path="/support" element={<SupportPage erpType={erpType} />} />
         <Route path="/alerts" element={<AlertsPage erpType={erpType} />} />

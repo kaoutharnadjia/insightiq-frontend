@@ -10,7 +10,7 @@ import { commonOptions } from '../utils/chartSetup';
 const RevenuePage = ({ erpType }) => {
   const { data, loading } = useAnalytics(erpType);
 
-  if (loading) return <ProcessingScreen message="Calculating Financial KPIs" />;
+  if (loading) return <ProcessingScreen message="Analyzing Sales Performance" />;
 
   // Process Sales Data for Chart
   const salesByMonth = {};
@@ -55,7 +55,7 @@ const RevenuePage = ({ erpType }) => {
   }));
 
   return (
-    <Layout erpType={erpType} title="Revenue & Sales">
+    <Layout erpType={erpType} title="Sales Intelligence">
       <div className="space-y-8">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           <div className="lg:col-span-2 space-y-8">
@@ -63,16 +63,17 @@ const RevenuePage = ({ erpType }) => {
               <div className="absolute top-0 right-0 w-64 h-64 bg-accent-red/5 blur-3xl -mr-32 -mt-32"></div>
               <div className="flex justify-between items-start">
                 <div>
-                  <p className="text-text-muted text-xs font-black uppercase tracking-widest mb-2">Total Gross Revenue</p>
-                  <h2 className="text-6xl font-black text-text-primary text-glow-primary">${data.kpis.totalSales.toLocaleString()}</h2>
+                  <p className="text-text-muted text-xs font-black uppercase tracking-widest mb-2">Total Sales Volume</p>
+                  <h2 className="text-6xl font-black text-text-primary text-glow-primary">{data.data.sales.length.toLocaleString()}</h2>
+                  <p className="text-text-muted text-xs mt-2 font-bold italic">Total Revenue: ${data.kpis.totalSales.toLocaleString()}</p>
                 </div>
                 <div className="p-4 bg-accent-red/10 rounded-2xl text-accent-red glow-soft">
-                  <DollarSign size={32} />
+                  <ShoppingBag size={32} />
                 </div>
               </div>
               <div className="mt-8 flex items-center space-x-3 text-accent-soft font-bold">
                 <ArrowUpRight size={20} />
-                <span>AI Accuracy: High-Confidence</span>
+                <span>Growth Potential: High</span>
               </div>
             </div>
 

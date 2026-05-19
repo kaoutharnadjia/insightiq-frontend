@@ -80,7 +80,7 @@ const Dashboard = ({ erpType }) => {
               subtitle="Intelligence"
               desc="Track performance & revenue insights"
               icon={<TrendingUp size={24} />}
-              onClick={() => navigate('/revenue')}
+              onClick={() => navigate('/sales')}
             />
             <ModuleCard 
               title="Inventory"
@@ -94,7 +94,7 @@ const Dashboard = ({ erpType }) => {
               subtitle="Intelligence"
               desc="Monitor cash flow & profitability"
               icon={<CreditCard size={24} />}
-              onClick={() => navigate('/revenue')}
+              onClick={() => navigate('/finance')}
             />
             <ModuleCard 
               title="Operations"

@@ -2,6 +2,7 @@ import React from 'react';
 import Header from './Header';
 import BottomNav from './BottomNav';
 import AIStatusPill from './AIStatusPill';
+import ChatWidget from './ChatWidget';
 
 const Layout = ({ children, erpType, title }) => {
   return (
@@ -18,6 +19,7 @@ const Layout = ({ children, erpType, title }) => {
         </main>
 
         <BottomNav />
+        <ChatWidget erpType={erpType} />
       </div>
     </div>
   );
