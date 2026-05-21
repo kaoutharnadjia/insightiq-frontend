@@ -35,7 +35,7 @@ const InventoryPage = ({ erpType }) => {
             <div className="flex justify-between items-start">
               <div>
                 <p className="text-text-muted text-xs font-black uppercase tracking-widest mb-2">Inventory Assets Value</p>
-                <h2 className="text-6xl font-black text-text-primary text-glow-primary">${data.kpis.inventoryValue.toLocaleString()}</h2>
+                <h2 className="text-6xl font-black text-text-primary text-glow-primary">{data.kpis.inventoryValue.toLocaleString()} DA</h2>
               </div>
               <div className="p-4 bg-burgundy/10 rounded-2xl text-accent-red glow-soft">
                 <Package size={32} />

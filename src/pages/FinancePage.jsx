@@ -73,7 +73,7 @@ const FinancePage = ({ erpType }) => {
           <div className="bg-bg-secondary p-8 rounded-[2.5rem] border border-border-dark flex items-center justify-between glow-red">
             <div>
               <p className="text-text-muted text-xs font-black uppercase tracking-widest mb-1">Estimated Net Profit</p>
-              <h3 className="text-4xl font-black text-text-primary">${netProfit.toLocaleString(undefined, { maximumFractionDigits: 0 })}</h3>
+              <h3 className="text-4xl font-black text-text-primary">{netProfit.toLocaleString(undefined, { maximumFractionDigits: 0 })} DA</h3>
             </div>
             <div className="p-4 bg-green-500/10 rounded-2xl text-green-500">
               <TrendingUp size={32} />
