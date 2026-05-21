@@ -17,47 +17,53 @@ const Dashboard = ({ erpType }) => {
     <Layout erpType={erpType} title="Dashboard">
       <div className="space-y-10 pb-10">
         {/* Hero Section */}
-        <div className="relative glass-morphism-red rounded-[3rem] p-10 overflow-hidden group">
+        <div className="relative glass-morphism-red rounded-[3rem] p-8 md:p-16 overflow-hidden group">
           {/* Graph Background Simulation */}
           <div className="absolute inset-0 opacity-20 pointer-events-none">
-            <svg viewBox="0 0 400 200" className="w-full h-full">
+            <svg viewBox="0 0 400 200" className="w-full h-full" preserveAspectRatio="none">
               <path 
                 d="M0 150 Q 100 130, 150 100 T 300 50 T 400 20" 
                 fill="none" 
                 stroke="#e61e3c" 
-                strokeWidth="4"
+                strokeWidth="2"
                 className="drop-shadow-[0_0_10px_rgba(230,30,60,0.8)]"
               />
               <circle cx="150" cy="100" r="4" fill="#e61e3c" className="animate-pulse" />
               <circle cx="300" cy="50" r="4" fill="#e61e3c" className="animate-pulse" />
-              <rect x="50" y="140" width="20" height="60" fill="#e61e3c" opacity="0.3" />
-              <rect x="100" y="120" width="20" height="80" fill="#e61e3c" opacity="0.3" />
-              <rect x="200" y="80" width="20" height="120" fill="#e61e3c" opacity="0.3" />
-              <rect x="250" y="60" width="20" height="140" fill="#e61e3c" opacity="0.3" />
-              <rect x="350" y="30" width="20" height="170" fill="#e61e3c" opacity="0.3" />
             </svg>
           </div>
 
-          <div className="relative z-10">
-            <div className="flex items-center space-x-2 mb-8">
-              <Star className="text-accent-red fill-accent-red" size={16} />
-              <span className="text-[10px] font-black uppercase tracking-[0.2em] text-white/60">
-                AI Readiness: <span className="text-white">{systemInsight.readiness}%</span>
-              </span>
+          <div className="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-10">
+            <div className="flex-1">
+              <div className="flex items-center space-x-2 mb-8">
+                <Star className="text-accent-red fill-accent-red" size={16} />
+                <span className="text-[10px] font-black uppercase tracking-[0.2em] text-white/60">
+                  AI Readiness: <span className="text-white">{systemInsight.readiness}%</span>
+                </span>
+              </div>
+              
+              <h2 className="text-4xl md:text-7xl font-black mb-8 leading-[1.1] tracking-tight text-white">
+                Your Business<br className="hidden md:block" />
+                Intelligence,<br className="hidden md:block" />
+                Decoded.
+              </h2>
+              
+              <div className="w-12 h-1 bg-accent-red mb-8"></div>
+              
+              <p className="text-text-secondary font-medium text-sm md:text-base leading-relaxed max-w-md">
+                Explore specialized insights optimized for your {erpType} environment. Choose a module below to deep dive into real-time analytics and predictive modeling.
+              </p>
             </div>
-            
-            <h2 className="text-5xl font-black mb-8 leading-[1.1] tracking-tight text-white">
-              Your Business<br />
-              Intelligence,<br />
-              Decoded<br />
-              in Real-Time.
-            </h2>
-            
-            <div className="w-12 h-1 bg-accent-red mb-8"></div>
-            
-            <p className="text-text-secondary font-medium text-sm leading-relaxed max-w-[280px]">
-              Explore specialized insights optimized for your {erpType} environment. Choose a module below to deep dive.
-            </p>
+
+            <div className="hidden md:flex flex-1 justify-end">
+               <div className="grid grid-cols-2 gap-4">
+                  {[1,2,3,4].map(i => (
+                    <div key={i} className="w-32 h-32 bg-white/5 rounded-3xl backdrop-blur-md border border-white/10 flex items-center justify-center animate-pulse" style={{ animationDelay: `${i * 0.2}s` }}>
+                       <div className="w-12 h-2 bg-accent-red/20 rounded-full"></div>
+                    </div>
+                  ))}
+               </div>
+            </div>
           </div>
 
           {/* Glossy Overlay */}
@@ -74,7 +80,7 @@ const Dashboard = ({ erpType }) => {
             </button>
           </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             <ModuleCard 
               title="Sales"
               subtitle="Intelligence"
