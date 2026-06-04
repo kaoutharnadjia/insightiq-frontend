@@ -12,6 +12,11 @@ const RevenuePage = ({ erpType }) => {
 
   if (loading) return <ProcessingScreen message="Analyzing Sales Performance" />;
 
+  // Guard clause to ensure data.data exists
+  if (!data || !data.data || !data.data.sales) {
+    return <Layout erpType={erpType} title="Sales Intelligence"><div className="p-10 text-center text-text-muted">No sales data available</div></Layout>;
+  }
+
   // Process Sales Data for Chart
   const salesByMonth = {};
   const monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
@@ -19,7 +24,7 @@ const RevenuePage = ({ erpType }) => {
   data.data.sales.forEach(sale => {
     const date = new Date(sale.date);
     const month = monthNames[date.getMonth()];
-    salesByMonth[month] = (salesByMonth[month] || 0) + sale.totalPrice;
+    salesByMonth[month] = (salesByMonth[month] || 0) + (Number(sale.totalPrice) || 0);
   });
 
   const chartLabels = monthNames.filter(m => salesByMonth[m] !== undefined);
@@ -43,14 +48,14 @@ const RevenuePage = ({ erpType }) => {
   const regions = {};
   data.data.sales.forEach(sale => {
     const reg = sale.region || 'Other';
-    regions[reg] = (regions[reg] || 0) + sale.totalPrice;
+    regions[reg] = (regions[reg] || 0) + (Number(sale.totalPrice) || 0);
   });
   
-  const totalRev = data.kpis.totalSales || 1;
+  const totalRev = (Number(data.kpis.totalSales) || 0);
   const regionalData = Object.entries(regions).map(([label, value]) => ({
     label,
     value: `${(value / 1000).toFixed(1)}k DA`,
-    percentage: Math.round((value / totalRev) * 100),
+    percentage: totalRev > 0 ? Math.round((value / totalRev) * 100) : 0,
     color: label === 'North' ? 'bg-burgundy' : label === 'South' ? 'bg-wine-red' : 'bg-accent-red'
   }));
 
@@ -64,14 +69,14 @@ const RevenuePage = ({ erpType }) => {
               <div className="flex justify-between items-start">
                 <div>
                   <p className="text-text-muted text-xs font-black uppercase tracking-widest mb-2">Total Sales Volume</p>
-                  <h2 className="text-6xl font-black text-text-primary text-glow-primary">{data.data.sales.length.toLocaleString()}</h2>
-                  <p className="text-text-muted text-xs mt-2 font-bold italic">Total Revenue: {(data.kpis.totalSales || 0).toLocaleString()} DA</p>
+                  <h2 className="text-6xl font-black text-text-primary text-glow-primary">{(data.data.sales.length || 0).toLocaleString()}</h2>
+                  <p className="text-text-muted text-xs mt-2 font-bold italic">Total Revenue: {(totalRev || 0).toLocaleString()} DA</p>
                 </div>
                 <div className="p-4 bg-accent-red/10 rounded-2xl text-accent-red glow-soft">
                   <ShoppingBag size={32} />
                 </div>
               </div>
-              <div className="mt-8 flex items-center space-x-3 text-accent-soft font-bold">
+              <div className="mt-8 flex items-center space-x-2 text-accent-soft font-bold">
                 <ArrowUpRight size={20} />
                 <span>Growth Potential: High</span>
               </div>
@@ -89,7 +94,7 @@ const RevenuePage = ({ erpType }) => {
           </div>
 
           <div className="space-y-8">
-             <div className="bg-bg-secondary p-8 rounded-[2.5rem] border border-border-dark space-y-6 glow-red">
+             <div className="bg-bg-secondary p-8 rounded-[2.5rem] border border-border-dark space-y-8 glow-red">
                 <h3 className="text-text-primary font-bold flex items-center space-x-2">
                   <Globe size={18} className="text-accent-red" />
                   <span>Regional Distribution</span>
@@ -105,7 +110,7 @@ const RevenuePage = ({ erpType }) => {
                 <p className="text-accent-soft font-black text-xs uppercase tracking-widest mb-2">AI Forecast</p>
                 <h4 className="text-text-primary font-bold text-lg mb-4">Market Trend Detected</h4>
                 <p className="text-text-secondary text-sm leading-relaxed">
-                  Analyzing {data.data.sales.length} transactions across {erpType}. 
+                  Analyzing {(data.data.sales.length || 0)} transactions across {erpType}. 
                   Volume is stable with a predicted {chartValues.length > 1 ? '5.2%' : '0%'} uptick in the coming cycle.
                 </p>
              </div>
@@ -138,17 +143,17 @@ const RevenuePage = ({ erpType }) => {
                  <tbody className="divide-y divide-border-dark">
                     {data.data.sales.slice(0, 10).map((sale, idx) => (
                        <tr key={idx} className="hover:bg-white/[0.02] transition-colors group">
-                          <td className="px-8 py-5 font-mono text-xs text-accent-red">#{sale._id.slice(-8).toUpperCase()}</td>
+                          <td className="px-8 py-5 font-mono text-xs text-accent-red">#{(sale._id || 'N/A').slice(-8).toUpperCase()}</td>
                           <td className="px-8 py-5 text-text-primary font-bold">{sale.productName || 'Direct Sale'}</td>
-                          <td className="px-8 py-5 text-text-secondary">{sale.quantity} units</td>
-                          <td className="px-8 py-5 text-accent-soft font-black">{(sale.totalPrice || 0).toLocaleString()} DA</td>
+                          <td className="px-8 py-5 text-text-secondary">{(sale.quantity || 0)} units</td>
+                          <td className="px-8 py-5 text-accent-soft font-black">{(Number(sale.totalPrice) || 0).toLocaleString()} DA</td>
                           <td className="px-8 py-5">
                              <span className="px-3 py-1 bg-burgundy/20 rounded-full text-[10px] font-bold text-text-secondary uppercase tracking-widest">
-                                {sale.region}
+                                {sale.region || 'North'}
                              </span>
                           </td>
                           <td className="px-8 py-5 text-text-muted text-xs">
-                             {new Date(sale.date).toLocaleDateString()}
+                             {sale.date ? new Date(sale.date).toLocaleDateString() : 'N/A'}
                           </td>
                        </tr>
                     ))}
@@ -162,16 +167,15 @@ const RevenuePage = ({ erpType }) => {
 };
 
 const RegionalRow = ({ label, value, percentage, color }) => (
-  <div className="space-y-2">
+  <div className="space-y-3">
     <div className="flex justify-between text-sm font-bold">
-      <span className="text-text-secondary">{label}</span>
-      <span className="text-text-primary">{value}</span>
+      <span className="text-text-secondary">{label || 'Other'}</span>
+      <span className="text-text-primary">{value || '0 DA'}</span>
     </div>
     <div className="h-1.5 bg-bg-main rounded-full overflow-hidden border border-border-dark">
-      <div className={`h-full ${color} glow-soft`} style={{ width: `${percentage}%` }}></div>
+      <div className={`h-full ${color || 'bg-accent-red'} glow-soft`} style={{ width: `${percentage || 0}%` }}></div>
     </div>
   </div>
 );
 
 export default RevenuePage;
-
