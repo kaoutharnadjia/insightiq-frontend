@@ -65,7 +65,7 @@ const RevenuePage = ({ erpType }) => {
                 <div>
                   <p className="text-text-muted text-xs font-black uppercase tracking-widest mb-2">Total Sales Volume</p>
                   <h2 className="text-6xl font-black text-text-primary text-glow-primary">{data.data.sales.length.toLocaleString()}</h2>
-                  <p className="text-text-muted text-xs mt-2 font-bold italic">Total Revenue: {data.kpis.totalSales.toLocaleString()} DA</p>
+                  <p className="text-text-muted text-xs mt-2 font-bold italic">Total Revenue: {(data.kpis.totalSales || 0).toLocaleString()} DA</p>
                 </div>
                 <div className="p-4 bg-accent-red/10 rounded-2xl text-accent-red glow-soft">
                   <ShoppingBag size={32} />
@@ -141,7 +141,7 @@ const RevenuePage = ({ erpType }) => {
                           <td className="px-8 py-5 font-mono text-xs text-accent-red">#{sale._id.slice(-8).toUpperCase()}</td>
                           <td className="px-8 py-5 text-text-primary font-bold">{sale.productName || 'Direct Sale'}</td>
                           <td className="px-8 py-5 text-text-secondary">{sale.quantity} units</td>
-                          <td className="px-8 py-5 text-accent-soft font-black">{sale.totalPrice.toLocaleString()} DA</td>
+                          <td className="px-8 py-5 text-accent-soft font-black">{(sale.totalPrice || 0).toLocaleString()} DA</td>
                           <td className="px-8 py-5">
                              <span className="px-3 py-1 bg-burgundy/20 rounded-full text-[10px] font-bold text-text-secondary uppercase tracking-widest">
                                 {sale.region}
