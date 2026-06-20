@@ -26,7 +26,7 @@ const ConnectionScreen = ({ onConnect }) => {
     <div className="min-h-screen bg-bg-main flex items-center justify-center p-6 font-sans">
       <div className="max-w-md w-full bg-bg-secondary rounded-3xl p-10 shadow-2xl border border-border-dark glow-red">
         <div className="flex flex-col items-center mb-10">
-          <div className="bg-burgundy/10 p-4 rounded-2xl mb-6 glow-soft">
+          <div className="bg-accent-red/5 p-4 rounded-2xl mb-6 glow-soft">
             <Database className="text-accent-red w-12 h-12" />
           </div>
           <h1 className="text-3xl font-bold text-text-primary mb-2 text-glow-primary">InsightIQ</h1>
@@ -47,7 +47,7 @@ const ConnectionScreen = ({ onConnect }) => {
                   onClick={() => setErpType(erp.id)}
                   className={`flex items-center space-x-4 p-4 rounded-2xl border-2 transition-all font-bold ${
                     erpType === erp.id 
-                      ? 'border-accent-red bg-burgundy/20 text-accent-red glow-soft' 
+                      ? 'border-accent-red bg-accent-red/5 text-accent-red glow-soft' 
                       : 'border-border-dark bg-bg-main text-text-secondary hover:bg-bg-card'
                   }`}
                 >
@@ -70,7 +70,7 @@ const ConnectionScreen = ({ onConnect }) => {
           <button
             onClick={handleConnect}
             disabled={loading}
-            className="w-full bg-accent-red hover:bg-deep-red disabled:opacity-50 text-text-primary font-bold py-4 rounded-2xl transition-all shadow-lg glow-red flex items-center justify-center space-x-3 group"
+            className="w-full bg-accent-red/10 backdrop-blur-xl border border-accent-red/30 hover:bg-accent-red/20 disabled:opacity-50 text-text-primary font-bold py-4 rounded-2xl transition-all shadow-lg glow-red flex items-center justify-center space-x-3 group"
           >
             {loading ? (
               <span className="animate-spin rounded-full h-5 w-5 border-b-2 border-text-primary"></span>
