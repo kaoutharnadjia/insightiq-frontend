@@ -9,7 +9,7 @@ const InsightsPage = ({ erpType }) => {
   return (
     <Layout erpType={erpType} title="Strategic Insights">
       <div className="space-y-8">
-        <div className="bg-gradient-to-br from-burgundy to-bg-secondary p-8 rounded-[2.5rem] border border-white/10 relative overflow-hidden">
+        <div className="bg-gradient-to-br from-accent-red to-bg-secondary p-8 rounded-[2.5rem] border border-white/10 relative overflow-hidden">
           <div className="relative z-10">
             <Zap className="text-accent-red mb-4" size={32} />
             <h2 className="text-3xl font-black text-white mb-2">AI Executive Summary</h2>

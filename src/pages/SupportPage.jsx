@@ -60,13 +60,13 @@ const SupportPage = ({ erpType }) => {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
         <div className="space-y-8">
             <div className="bg-bg-secondary p-10 rounded-[2.5rem] border border-border-dark relative overflow-hidden group glow-red">
-              <div className="absolute top-0 right-0 w-64 h-64 bg-burgundy/5 blur-3xl -mr-32 -mt-32"></div>
+              <div className="absolute top-0 right-0 w-64 h-64 bg-accent-red/5 blur-3xl -mr-32 -mt-32"></div>
               <div className="flex justify-between items-start">
                 <div>
                   <p className="text-text-muted text-xs font-black uppercase tracking-widest mb-2">Total Open Tickets</p>
                   <h2 className="text-6xl font-black text-text-primary text-glow-primary">{data.kpis.complaintCount}</h2>
                 </div>
-                <div className="p-4 bg-burgundy/10 rounded-2xl text-accent-red glow-soft">
+                <div className="p-4 bg-accent-red/5 rounded-2xl text-accent-red glow-soft">
                   <MessageSquare size={32} />
                 </div>
               </div>
@@ -107,8 +107,8 @@ const SupportPage = ({ erpType }) => {
            </h3>
            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {supportInsights.length > 0 ? supportInsights.map((insight, idx) => (
-                <div key={idx} className="bg-bg-secondary border border-border-dark p-8 rounded-[2.5rem] flex items-start space-x-6 hover:border-burgundy/50 transition-all glow-red">
-                   <div className="p-4 bg-burgundy/10 text-accent-red rounded-2xl glow-soft">
+                 <div key={idx} className="bg-bg-secondary border border-border-dark p-8 rounded-[2.5rem] flex items-start space-x-6 hover:border-accent-red/50 transition-all glow-red">
+                    <div className="p-4 bg-accent-red/5 text-accent-red rounded-2xl glow-soft">
                       <Activity size={24} />
                    </div>
                    <div>

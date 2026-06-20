@@ -87,7 +87,7 @@ const ChatWidget = ({ erpType }) => {
       {isOpen && (
         <div className="glass-morphism rounded-2xl shadow-2xl w-85 sm:w-100 h-[550px] flex flex-col overflow-hidden animate-in slide-in-from-bottom-5 border-white/10">
           {/* Header */}
-          <div className="bg-burgundy-dark/80 backdrop-blur-md p-4 text-white flex justify-between items-center border-b border-white/10">
+          <div className="bg-accent-red/10 backdrop-blur-md p-4 text-white flex justify-between items-center border-b border-accent-red/20">
             <div className="flex items-center gap-2">
               <div className="p-1.5 bg-accent-red/20 rounded-lg border border-accent-red/30">
                 <Sparkles size={18} className="text-accent-soft" />

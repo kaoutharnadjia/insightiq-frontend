@@ -56,7 +56,7 @@ const RevenuePage = ({ erpType }) => {
     label,
     value: `${(value / 1000).toFixed(1)}k DA`,
     percentage: totalRev > 0 ? Math.round((value / totalRev) * 100) : 0,
-    color: label === 'North' ? 'bg-burgundy' : label === 'South' ? 'bg-wine-red' : 'bg-accent-red'
+    color: label === 'North' ? 'bg-accent-red' : label === 'South' ? 'bg-wine-red' : 'bg-accent-red'
   }));
 
   return (
@@ -106,7 +106,7 @@ const RevenuePage = ({ erpType }) => {
                 </div>
              </div>
 
-             <div className="bg-gradient-to-br from-burgundy to-wine-red border border-burgundy-dark p-8 rounded-[2.5rem] glow-red">
+             <div className="bg-gradient-to-br from-accent-red to-deep-red p-8 rounded-[2.5rem] glow-red">
                 <p className="text-accent-soft font-black text-xs uppercase tracking-widest mb-2">AI Forecast</p>
                 <h4 className="text-text-primary font-bold text-lg mb-4">Market Trend Detected</h4>
                 <p className="text-text-secondary text-sm leading-relaxed">
@@ -124,7 +124,7 @@ const RevenuePage = ({ erpType }) => {
                 <ShoppingBag className="text-accent-red" />
                 <span>Recent Transactions (Normalized)</span>
               </h3>
-              <span className="bg-burgundy/20 text-accent-red px-4 py-1 rounded-full text-xs font-black uppercase tracking-widest">
+              <span className="bg-accent-red/10 text-accent-red px-4 py-1 rounded-full text-xs font-black uppercase tracking-widest">
                 Source: {erpType}
               </span>
            </div>
@@ -148,7 +148,7 @@ const RevenuePage = ({ erpType }) => {
                           <td className="px-8 py-5 text-text-secondary">{(sale.quantity || 0)} units</td>
                           <td className="px-8 py-5 text-accent-soft font-black">{(Number(sale.totalPrice) || 0).toLocaleString()} DA</td>
                           <td className="px-8 py-5">
-                             <span className="px-3 py-1 bg-burgundy/20 rounded-full text-[10px] font-bold text-text-secondary uppercase tracking-widest">
+                              <span className="px-3 py-1 bg-accent-red/10 rounded-full text-[10px] font-bold text-text-secondary uppercase tracking-widest">
                                 {sale.region || 'North'}
                              </span>
                           </td>

@@ -120,7 +120,7 @@ const FinancePage = ({ erpType }) => {
         </div>
 
         {/* Finance Forecast Card */}
-        <div className="bg-gradient-to-br from-burgundy to-wine-red border border-burgundy-dark p-8 rounded-[2.5rem] shadow-2xl">
+        <div className="bg-gradient-to-br from-accent-red to-deep-red p-8 rounded-[2.5rem] shadow-2xl">
           <div className="flex items-start justify-between mb-6">
             <div>
               <span className="bg-white/10 text-white px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest">AI Financial Forecast</span>

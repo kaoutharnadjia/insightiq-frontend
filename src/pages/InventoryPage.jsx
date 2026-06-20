@@ -36,13 +36,13 @@ const InventoryPage = ({ erpType }) => {
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
         <div className="lg:col-span-2 space-y-8">
           <div className="bg-bg-secondary p-10 rounded-[2.5rem] border border-border-dark relative overflow-hidden group glow-red">
-            <div className="absolute top-0 right-0 w-64 h-64 bg-burgundy/5 blur-3xl -mr-32 -mt-32"></div>
+            <div className="absolute top-0 right-0 w-64 h-64 bg-accent-red/5 blur-3xl -mr-32 -mt-32"></div>
             <div className="flex justify-between items-start">
               <div>
                 <p className="text-text-muted text-xs font-black uppercase tracking-widest mb-2">Inventory Assets Value</p>
                 <h2 className="text-6xl font-black text-text-primary text-glow-primary">{(Number(data.kpis.inventoryValue) || 0).toLocaleString()} DA</h2>
               </div>
-              <div className="p-4 bg-burgundy/10 rounded-2xl text-accent-red glow-soft">
+              <div className="p-4 bg-accent-red/5 rounded-2xl text-accent-red glow-soft">
                 <Package size={32} />
               </div>
             </div>
@@ -71,7 +71,7 @@ const InventoryPage = ({ erpType }) => {
                         <h4 className="text-text-primary font-bold">{insight.product || 'Unknown Product'}</h4>
                         <p className="text-text-secondary text-xs mt-1">{insight.prediction || 'No prediction available'}</p>
                       </div>
-                      <span className={`text-[10px] font-black uppercase px-2 py-1 rounded-md ${insight.severity === 'high' ? 'bg-accent-red/20 text-accent-red' : 'bg-burgundy/20 text-text-secondary'}`}>
+                      <span className={`text-[10px] font-black uppercase px-2 py-1 rounded-md ${insight.severity === 'high' ? 'bg-accent-red/20 text-accent-red' : 'bg-accent-red/10 text-text-secondary'}`}>
                         {insight.severity || 'low'}
                       </span>
                     </div>
@@ -93,10 +93,10 @@ const InventoryPage = ({ erpType }) => {
               </h3>
               <RiskItem label="Stockout Probability" percentage={75} color="bg-accent-red" />
               <RiskItem label="Warehouse Capacity" percentage={88} color="bg-wine-red" />
-              <RiskItem label="Supplier Delay" percentage={12} color="bg-burgundy" />
+              <RiskItem label="Supplier Delay" percentage={12} color="bg-accent-red" />
            </div>
 
-           <div className="p-8 bg-gradient-to-br from-burgundy to-wine-red rounded-[2.5rem] text-text-primary glow-red">
+           <div className="p-8 bg-gradient-to-br from-accent-red to-deep-red rounded-[2.5rem] text-text-primary glow-red">
               <p className="font-black uppercase tracking-widest text-[10px] mb-2 opacity-80">Supply Chain Tip</p>
               <h4 className="font-bold text-lg mb-4 text-glow-primary">Enable Auto-Replenish</h4>
               <p className="text-sm text-text-primary/80">Integrating your supplier portal with InsightIQ can reduce stockout risk by 45%.</p>

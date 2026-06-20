@@ -17,7 +17,7 @@ const Header = ({ erpType }) => {
           <span className="absolute top-2 right-2 w-2 h-2 bg-accent-red rounded-full border-2 border-bg-main"></span>
         </button>
         <button className="p-1.5 border border-white/10 rounded-full hover:border-accent-red/50 transition-colors">
-          <div className="w-8 h-8 bg-gradient-to-br from-burgundy to-accent-red rounded-full flex items-center justify-center">
+          <div className="w-8 h-8 bg-gradient-to-br from-accent-red to-accent-soft rounded-full flex items-center justify-center">
             <User size={18} className="text-white" />
           </div>
         </button>
